@@ -1,0 +1,28 @@
+# vision:
+
+conda create -n gecco python=3.10.13
+
+WICHTIG: kein module load cuda/12.1
+Das liegt daran, dass jaxlib bestimmte cublas versionen braucht und die werden beim pip download in der enviornment installiert. wenn jetzt jedoch module load cuda/12.1 gemacht wird, dann werden damit auch die FALSCHEN cublas version mitgeladen, wodurch die installierte, richtige version, nicht erkannt wird
+
+cuda 12:
+pip3 install torch torchvision torchaudio
+
+cuda 11.8:
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+VOR JAX:
+pip install lightning
+
+pip install -e gecco-jax
+pip install -e gecco-torch (pfad zum gecco-torch folder)
+
+erst dann:
+jax requires in der einfachen installations variante >cuda/12
+pip install -U "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+pip install wandb
+pip install matplotlib
+pip install plotly
+
+pip install wandb matplotlib plotly
