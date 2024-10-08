@@ -15,7 +15,7 @@ During training, the Gaussian scene is noised based on the noise level t and pro
 ![Method Overview](assets/methode.png "Method overview of the project")
 
 The denoising backbone is based on Lee et al.'s [Set Transformer](https://arxiv.org/abs/1810.00825) which reduces attention's quadratic complexity to one that is linear in the number of data points w.r.t. the number of Learned Inducers.
-<img src="assets/set_transformer.png" alt="Set Transformer" title="Set Transformer to reduce complexity" style="width: 100%; display: block; margin: auto;"/>
+<img src="assets/set_transformer.png" alt="Set Transformer" title="Set Transformer to reduce complexity" style="width: 70%; display: block; margin: auto;"/>
 
 
 
@@ -63,4 +63,4 @@ pip install git+https://github.com/princeton-vl/lietorch.git
 ```
 which needs to be extended as detailed in [this file](modify_lietorch.py).
 
-This project uses Christian's [depth renderer](https://git.rwth-aachen.de/christian.schmidt4/gsplat) and needs to be cloned into the directory path/to/this/repository/gecco-torch/src/gecco_torch/. The version used was at commit 6adf1fd874335388cd49e6d4323c55402c856617. 
+This project uses Christian's [depth renderer](https://git.rwth-aachen.de/christian.schmidt4/gsplat) which to be cloned to the directory path/to/this/repository/gecco-torch/src/gecco_torch/. The version used was at commit 6adf1fd874335388cd49e6d4323c55402c856617. 
