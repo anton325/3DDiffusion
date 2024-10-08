@@ -16,11 +16,11 @@ import lpips
 from gecco_torch.structs import Camera, GaussianContext3d, InsInfo, Mode
 from gecco_torch.additional_metrics.distance_pointclouds import chamfer_distance_naive_occupany_networks, chamfer_formula_smart_l1_np
 
-from gecco_torch.metrics import (
-    chamfer_distance,
-    sinkhorn_emd,
-    chamfer_distance_squared,
-)
+# from gecco_torch.metrics import (
+#     chamfer_distance,
+#     sinkhorn_emd,
+#     chamfer_distance_squared,
+# )
 
 def batched_pairwise_distance(a, b, distance_fn, block_size):
     """
@@ -67,7 +67,7 @@ class BenchmarkCallback:
         tag_prefix: str = "benchmark",
         rng_seed: int = 42,
         block_size: int = 16,
-        distance_fn: Union[str, Callable] = chamfer_distance_squared,
+        distance_fn: Union[str, Callable] = str,
         save_path: Optional[str] = None,
     ):
 
@@ -108,34 +108,34 @@ class BenchmarkCallback:
         self.lpips_fn_net = lpips.LPIPS(net = 'alex').cuda()
         self.ssim_fn = SSIM().cuda()
 
-        if isinstance(distance_fn, str):
-            distance_fn = {
-                "chamfer": chamfer_distance,
-                "chamfer_squared": chamfer_distance_squared,
-                "emd": partial(sinkhorn_emd, epsilon=0.1),
-            }[distance_fn]
+        # if isinstance(distance_fn, str):
+        #     distance_fn = {
+        #         "chamfer": chamfer_distance,
+        #         "chamfer_squared": chamfer_distance_squared,
+        #         "emd": partial(sinkhorn_emd, epsilon=0.1),
+        #     }[distance_fn]
 
-        if hasattr(distance_fn, "func"):
-            self.distance_fn_name = distance_fn.func.__name__
-        else:
-            self.distance_fn_name = distance_fn.__name__
+        # if hasattr(distance_fn, "func"):
+        #     self.distance_fn_name = distance_fn.func.__name__
+        # else:
+        #     self.distance_fn_name = distance_fn.__name__
 
-        self.distance_fn = partial(
-            batched_pairwise_distance,
-            distance_fn=distance_fn,
-            block_size=self.block_size,
-        )
+        # self.distance_fn = partial(
+        #     batched_pairwise_distance,
+        #     distance_fn=distance_fn,
+        #     block_size=self.block_size,
+        # )
 
-        if not self.conditional:
-            self.dd_dist = self.distance_fn(self.data, self.data)
+        # if not self.conditional:
+        #     self.dd_dist = self.distance_fn(self.data, self.data)
 
-        if save_path is not None:
-            save_path = os.path.join(
-                save_path, "benchmark-checkpoints", self.distance_fn_name
-            )
-            os.makedirs(save_path, exist_ok=True)
+        # if save_path is not None:
+        #     save_path = os.path.join(
+        #         save_path, "benchmark-checkpoints", self.distance_fn_name
+        #     )
+        #     os.makedirs(save_path, exist_ok=True)
         self.save_path = save_path
-        self.lowest_1nn = float("inf")
+        # self.lowest_1nn = float("inf")
 
     @classmethod
     def from_loader(
@@ -277,27 +277,27 @@ class BenchmarkCallback:
             if not self.conditional:
                 # unconditional
                 print(f"benchmark FORWARD shape samples {samples.shape}")
-                scalars, plots = self.call_without_logging(samples)
+                # scalars, plots = self.call_without_logging(samples)
 
-                for key, value in scalars.items():
-                    log_fun(key,value,on_step=False, on_epoch=True)
-                    # logger.experiment.add_scalar(key, scalar_value=value, global_step=epoch)
-                    # log(key,value, on_step=False, on_epoch=True)
+                # for key, value in scalars.items():
+                #     log_fun(key,value,on_step=False, on_epoch=True)
+                #     # logger.experiment.add_scalar(key, scalar_value=value, global_step=epoch)
+                #     # log(key,value, on_step=False, on_epoch=True)
 
-                for key, value in plots.items():
-                    # logger.log(key,value, on_step=False, on_epoch=True)
-                    # logger.experiment.add_figure(key, figure=value, global_step=epoch)
-                    wandb_fig = wandb.Image(value)
-                    wandb.log({key:[wandb_fig]})
+                # for key, value in plots.items():
+                #     # logger.log(key,value, on_step=False, on_epoch=True)
+                #     # logger.experiment.add_figure(key, figure=value, global_step=epoch)
+                #     wandb_fig = wandb.Image(value)
+                #     wandb.log({key:[wandb_fig]})
 
-                if self.save_path is None:
-                    return
-                _1nn_tag = f"{self.tag_prefix}/1-nn-acc/{self.distance_fn_name}"
-                _1nn_score = scalars[_1nn_tag]
-                if not _1nn_score < self.lowest_1nn:
-                    return
-                print(f"{_1nn_score} improves over {self.lowest_1nn} at {_1nn_tag}.")
-                self.lowest_1nn = _1nn_score
+                # if self.save_path is None:
+                #     return
+                # _1nn_tag = f"{self.tag_prefix}/1-nn-acc/{self.distance_fn_name}"
+                # _1nn_score = scalars[_1nn_tag]
+                # if not _1nn_score < self.lowest_1nn:
+                #     return
+                # print(f"{_1nn_score} improves over {self.lowest_1nn} at {_1nn_tag}.")
+                # self.lowest_1nn = _1nn_score
 
             elif self.conditional:
                 all_categories = []

@@ -7,7 +7,7 @@ import numpy as np
 import pathlib
 import datetime
 import wandb
-from gecco_torch.diffusion import Diffusion
+from gecco_torch.diffusionsplat import Diffusion
 from gecco_torch.structs import GaussianExample,GaussianContext3d, Camera, Mode
 from gecco_torch.scene.gaussian_model import GaussianModel
 from gecco_torch.utils.loss_utils import l1_loss

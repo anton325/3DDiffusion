@@ -223,12 +223,12 @@ def trainer(config_dest, **config):
         default_root_dir=os.path.split(__file__)[0],
         callbacks=[
             EMACallback(decay=0.99),
-            LikelihoodCallback(
-                mode=mode,
-                batch_size = batch_size,
-                n = 48,
-                n_steps = 64,
-            ),
+            # LikelihoodCallback(
+            #     mode=mode,
+            #     batch_size = batch_size,
+            #     n = 48,
+            #     n_steps = 64,
+            # ),
             pl.callbacks.ModelCheckpoint(
                 dirpath=os.path.join(config_dest, "checkpoints"),
                 filename="{epoch}-{benchmark_mean_splatting_loss:.4f}",

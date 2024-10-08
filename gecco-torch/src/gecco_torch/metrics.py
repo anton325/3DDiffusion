@@ -5,7 +5,7 @@ import torch
 from scipy.spatial import cKDTree
 
 import jax.numpy as jnp
-import equinox as eqx
+# import equinox as eqx
 import numpy as np
 from scipy.optimize import linear_sum_assignment
 from torch_dimcheck import dimchecked, A

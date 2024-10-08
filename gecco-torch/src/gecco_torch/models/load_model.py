@@ -49,7 +49,7 @@ def load_model(version,epoch=None):
 
 
 
-def load_model_saver_checkpoints(version):
+def load_model_saver_checkpoints(version, working_dir):
     #  always assume that it's local
     
     file_name = "gaussians_unconditional"
@@ -68,7 +68,8 @@ def load_model_saver_checkpoints(version):
 
 
     print(f"copy {path_python_main}")
-    shutil.copy(path_python_main,"/home/giese/Documents/gecco/gecco-torch/src/gecco_torch/models/temp.py")
+
+    shutil.copy(path_python_main,Path(working_dir,"gecco-torch","src","gecco_torch","models","temp.py"))
     from gecco_torch.models.temp import model, render_fn, data, mode, reparam
 
     checkpoint_path = Path(Path(path_python_main).parent,"saver_checkpoints")
@@ -82,6 +83,7 @@ def load_model_saver_checkpoints(version):
         model.load_state_dict(model_state_dict)
     except:
         if Mode.dino_triplane in mode:
+            # ich habe die umbeannt 
             model_state_dict['backbone.model.triplane_conv_xy.weight'] = model_state_dict['backbone.model.triplane_xy.weight'].clone()
             del model_state_dict['backbone.model.triplane_xy.weight']
             model_state_dict['backbone.model.triplane_conv_xy.bias'] = model_state_dict['backbone.model.triplane_xy.bias'].clone()

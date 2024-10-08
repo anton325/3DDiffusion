@@ -12,7 +12,7 @@ from gecco_torch.gaussian_renderer import render
 from gecco_torch.structs import Mode
 
 from gecco_torch.utils.lie_utils import batched_lietorch_tangential_to_quaternion
-from gecco_torch.utils.rotation_utils import rotation_matrix_to_quaternion_pytorch3d
+# from gecco_torch.utils.rotation_utils import rotation_matrix_to_quaternion_pytorch3d
 from gecco_torch.utils.sh_utils import RGB2SH
 from gecco_torch.utils.riemannian_helper_functions import L_to_cov_x6, find_cholesky_L
 from gecco_torch.utils.build_cov_matrix_torch import strip_lowerdiag, build_covariance_from_activated_scaling_rotation

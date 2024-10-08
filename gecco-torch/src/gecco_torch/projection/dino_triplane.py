@@ -3,7 +3,7 @@ from gecco_torch.structs import GaussianContext3d, Mode
 from torch import Tensor
 import torch
 from einops import rearrange
-from gecco_torch.projection.dino_dirs_vis import Visualize_cameras
+# from gecco_torch.projection.dino_dirs_vis import Visualize_cameras
 
 def compute_plucker_coordinates(points, directions):
     """

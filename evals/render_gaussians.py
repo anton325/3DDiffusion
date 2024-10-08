@@ -10,6 +10,7 @@ import lpips
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import pathlib
 import time
 import argparse
 
@@ -165,7 +166,7 @@ class GaussianGeccoEvaluator:
         self.ssim_fn = SSIM().cuda()
 
         # self.model, self.render_fn, self.data, self.mode, self.reparam, self.epoch = load_model(version,epoch)
-        self.model, self.render_fn, self.data, self.mode, self.reparam, self.epoch, self.unconditional_bool = load_model_saver_checkpoints(version)
+        self.model, self.render_fn, self.data, self.mode, self.reparam, self.epoch, self.unconditional_bool = load_model_saver_checkpoints(version, pathlib.Path.cwd())
         # self.mode.append(Mode.gecco_projection)
         
         self.model = self.model.cuda().eval()
@@ -255,7 +256,8 @@ class GaussianGeccoEvaluator:
                 pose = np.array([float(x) for x in contents.split(" ")]).reshape(4,4)
                 # pose = pose.transpose()
                 return pose
-                
+        
+        # shapenet srn von https://drive.google.com/drive/folders/1PsT3uKwqHHD2bEEHkIXB99AlIjtmrEiR
         root = Path("/globalwork/giese/srn_cars/cars_test/7c5e0fd7e8c62d047eed1e11d741a3f1/pose")
         files = sorted(list(root.iterdir()))
         poses = [_load_pose_txt(f) for f in files]
@@ -1397,25 +1399,15 @@ if __name__ == "__main__":
     # Initialize the ArgumentParser
     parser = argparse.ArgumentParser(description="Process a model to evaluate")
 
-    # Add a string argument
-
-    # nicht ctx 48603302
-    # ctx 48516943
     # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48638814") # proc_uncond car
     # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48638932") # proc_uncond chair
     # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48638753") # proc_uncond plane
 
-    parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48659067") # Proc all categories
-# 
-    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="47868682") # gecco++ ambient splat
-    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="47702620") # gecco++
-    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48516703") # log L
-    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48516943") # proc
-    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="47818687") # act scales
-    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48600907") # so3
-    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48554659") # cholesky
-    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48584330") # cholesky besser ! (edit temp.py wegen model loading)
-    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="451425") # cholesky
+    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48659067") # Proc all categories
+
+    parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="47702620") # gecco++ car
+    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48516943") # proc car 
+    # parser.add_argument('--model_name', type=str, help='Name of the model to evaluate',default="48600907") # so3 car
     parser.add_argument('--variant', type=str, help='Specific circumstances to eval', default="vid2")
     # Parse the arguments
     args = parser.parse_args()

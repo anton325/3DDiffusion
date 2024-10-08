@@ -1,10 +1,10 @@
 from functools import partial
 
 import jax.numpy as jnp
-from torch_dimcheck import dimchecked, A
+# from torch_dimcheck import dimchecked, A
 
 
-@dimchecked
+# @dimchecked
 def distance_matrix(
     a: A["N D"],
     b: A["M D"],
@@ -80,7 +80,7 @@ def unproject_points(
 
 
 @partial(jnp.vectorize, signature="(a),(b,c)->(d)")
-@dimchecked
+# @dimchecked
 def project_points(xyz: A["3"], camera_matrix: A["3 3"]) -> A["2"]:
     xyw = jnp.einsum("e,ae->a", xyz, camera_matrix)
     return convert_points_from_homogeneous(xyw)

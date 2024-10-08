@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 from scipy.spatial.transform import Rotation
-from pytorch3d.transforms import matrix_to_quaternion
+# from pytorch3d.transforms import matrix_to_quaternion
 
 
 def rotation_matrix_to_quaternion_pytorch3d(R):
