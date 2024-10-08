@@ -19,7 +19,7 @@ import time
 from gecco_torch.utils.system_utils import mkdir_p
 from plyfile import PlyData
 from gecco_torch.utils.sh_utils import RGB2SH
-from simple_knn._C import distCUDA2
+# from simple_knn._C import distCUDA2
 from gecco_torch.utils.graphics_utils import BasicPointCloud
 from gecco_torch.utils.general_utils import strip_symmetric, build_scaling_rotation
 from gecco_torch.scene.gaussian_model_template import GaussianModelTemplate

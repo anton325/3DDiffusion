@@ -4,7 +4,7 @@ import pathlib
 import shutil
 
 import torch
-import lightning.pytorch as pl # pytorch-lightning            2.2.1
+import lightning.pytorch as pl
 
 from gecco_torch.diffusionsplat import EDMPrecond, Diffusion, LogUniformSchedule, EDMLoss
 from gecco_torch.reparam import GaussianReparam, get_reparam_parameters

@@ -46,6 +46,21 @@ From the different investigated methods, the Procrustes and SO(3) methods emerge
 
 
 ## Installation
-This repository is structured as a `pip` package which can be installed via `pip install path/to/this/repository/gecco-torch` and used as `import gecco_torch`. Add the `-e` flag in your `pip install` command if you want your changes in this repository to be immediately reflected in import location, otherwise you need to re-install the package after each modification.
+To train your own models, start with a new conda environment. Then, install the submodule diff-gaussian-rasterization from Gaussian Splatting's [official repo](https://github.com/graphdeco-inria/gaussian-splatting). 
+Next up, install the requirements
+```
+pip install -r requirements.txt
+```
+This repository is structured as a `pip` package which can be installed via 
+```
+pip install -e path/to/this/repository/gecco-torch
+```
+ and used as `import gecco_torch`.
 
-This project uses the Princeton torch implementation of the lie group [lietorch](https://github.com/princeton-vl/lietorch) which needs to be extended as detailed in [this file](modify_lietorch.py).
+This project uses the Princeton torch implementation of the lie group [lietorch](https://github.com/princeton-vl/lietorch) which can be installed via 
+```
+pip install git+https://github.com/princeton-vl/lietorch.git
+```
+which needs to be extended as detailed in [this file](modify_lietorch.py).
+
+This project uses Christian's [depth renderer](https://git.rwth-aachen.de/christian.schmidt4/gsplat) and needs to be cloned into the directory path/to/this/repository/gecco-torch/src/gecco_torch/. The version used was at commit 6adf1fd874335388cd49e6d4323c55402c856617. 

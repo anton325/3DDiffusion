@@ -43,5 +43,6 @@ my-awesome-project
 .nfs*
 *.npy
 *.png
+!assets/*.png
 *.npz
 *.mp4
