@@ -15,7 +15,8 @@ During training, the Gaussian scene is noised based on the noise level t and pro
 ![Method Overview](assets/methode.png "Method overview of the project")
 
 The denoising backbone is based on Lee et al.'s [Set Transformer](https://arxiv.org/abs/1810.00825) which reduces attention's quadratic complexity to one that is linear in the number of data points w.r.t. the number of Learned Inducers.
-<img src="assets/set_transformer.png" alt="Set Transformer" title="Set Transformer to reduce complexity" style="width: 70%; display: block; margin: auto;"/>
+<img src="assets/set_transformer.png" alt="Set Transformer" title="Set Transformer to reduce complexity" style="width: 70%; display: block; margin: 0 auto;"/>
+
 
 
 
