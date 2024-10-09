@@ -1,6 +1,6 @@
 # Image-conditioned Gaussian Splatting Diffusion
 
- 3D Gaussian Splatting is a powerful method for learning 3D structures and enabling high-fidelity novel view synthesis. 
+ [3D Gaussian Splatting](https://arxiv.org/abs/2308.04079) is a powerful method for learning 3D structures and enabling high-fidelity novel view synthesis. 
 
 To circumvent long optimization times and the dense accurately posed dataset requirements, in this project, Tyszkiewicz et al.’s point cloud diffusion model [GECCO](https://arxiv.org/abs/2303.05916) is extended to Gaussian Splatting point clouds. This allows generation of Gaussian Splatting scenes either conditionally on an image or unconditionally for a certain class.
 
@@ -11,7 +11,7 @@ Diffusion is the process of adding noise to samples from an unknown distribution
 
 ## Method
 
-During training, the Gaussian scene is noised based on the noise level t and projected onto a ConvNeXT-tiny-derived feature map. This enhanced point cloud is denoised with the Set Transformer. The loss is calculated by comparing the denoised scene against the ground truth scene and photometrically against a ground truth image.
+During training, the Gaussian scene is noised based on the noise level t and projected onto a [ConvNeXT-tiny](https://arxiv.org/abs/2201.03545)-derived feature map. This enhanced point cloud is denoised with the Set Transformer. The loss is calculated by comparing the denoised scene against the ground truth scene and photometrically against a ground truth image.
 ![Method Overview](assets/Methode.png "Method overview of the project")
 
 The denoising backbone is based on Lee et al.'s [Set Transformer](https://arxiv.org/abs/1810.00825) which reduces attention's quadratic complexity to one that is linear in the number of data points w.r.t. the number of Learned Inducers.
