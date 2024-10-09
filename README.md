@@ -47,12 +47,11 @@ From the different investigated methods, the Procrustes and SO(3) methods emerge
 
 
 ## Installation
-To train your own models, start with a new conda environment. Then install [pytorch](https://pytorch.org/get-started/locally/) from source 
-Next up, install the requirements
+To train your own models, start with a new conda environment. Then, install [pytorch](https://pytorch.org/get-started/locally/) from source. Next up, install the requirements
 ```
 pip install -r requirements.txt
 ```
-This project uses Christian's [depth renderer](https://git.rwth-aachen.de/christian.schmidt4/gsplat) which to be cloned to the directory path/to/this/repository/gecco-torch/src/gecco_torch/. The version used was at commit 6adf1fd874335388cd49e6d4323c55402c856617. 
+This project uses Christian's [depth renderer](https://git.rwth-aachen.de/christian.schmidt4/gsplat) which needs to be cloned to the directory path/to/this/repository/gecco-torch/src/gecco_torch/. The version used was at commit 6adf1fd874335388cd49e6d4323c55402c856617. 
 Then, install the submodule diff-gaussian-rasterization from Gaussian Splatting's [official repo](https://github.com/graphdeco-inria/gaussian-splatting). 
 This project uses the Princeton torch implementation of the lie group [lietorch](https://github.com/princeton-vl/lietorch) which can be installed via
 ```
