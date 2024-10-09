@@ -38,29 +38,17 @@ gruppe 2 good: nur 0 overlap (also die die gar kein einziges bild mit mehrs als 
 gruppe 3 mid: alles bis 30 overlap (die danach hauen wir raus) -> also das mittelgute dataset # besteht aus 35.000 objekten
 """
 
-LOCAL_DEBUG = True
+LOCAL_DEBUG = False
 group = "good" # "good" "mid" # "all"
-
-# WORK
-# mode = [Mode.in_world_space, Mode.rgb, Mode.normal, Mode.rotational_distance, Mode.gecco_projection, Mode.dino_triplane] # , Mode.ctx_splat, Mode.splatting_loss
 
 mode = [Mode.in_world_space, Mode.procrustes, Mode.rgb, Mode.gecco_projection, Mode.rotational_distance, Mode.log_grads, Mode.splatting_loss, Mode.ctx_splat]
 
-# mode = [Mode.in_world_space, Mode.rgb, Mode.activated_scales, Mode.rotational_distance, Mode.gecco_projection, Mode.log_grads, Mode.splatting_loss , Mode.ctx_splat]#, Mode.splatting_loss
-# mode = [Mode.in_world_space, Mode.rgb, Mode.activated_scales, Mode.rotational_distance, Mode.gecco_projection, Mode.log_grads, Mode.splatting_loss , Mode.ctx_splat]#, Mode.splatting_loss
-# mode = [Mode.in_world_space, Mode.rgb, Mode.procrustes, Mode.rotational_distance, Mode.gecco_projection, Mode.log_grads, Mode.ctx_splat, Mode.splatting_loss] # , Mode.ctx_splat, Mode.splatting_loss
-# mode = [Mode.in_world_space,Mode.log_L, Mode.splatting_loss]
-
-# mode = [Mode.in_world_space, Mode.activated_scales, Mode.rgb, Mode.gecco_projection, Mode.rotational_distance, Mode.log_grads, Mode.splatting_loss]
-# mode = [Mode.in_world_space, Mode.normal_opac, Mode.rgb, Mode.gecco_projection, Mode.rotational_distance, Mode.log_grads, Mode.splatting_loss, Mode.ctx_splat]
+# mode = [Mode.in_world_space, Mode.rgb, Mode.procrustes, Mode.rotational_distance, Mode.gecco_projection, Mode.log_grads, Mode.splatting_loss, Mode.ctx_splat]
 
 # mode = [Mode.in_world_space, Mode.normal, Mode.rgb, Mode.gecco_projection, Mode.rotational_distance, Mode.log_grads, Mode.splatting_loss, Mode.ctx_splat]
 
-# mode = [Mode.in_world_space, Mode.cholesky, Mode.rgb, Mode.cholesky_distance, Mode.log_grads, Mode.gecco_projection, Mode.splatting_loss, Mode.ctx_splat] # , Mode.ctx_splat, Mode.splatting_loss
+# mode = [Mode.in_world_space, Mode.cholesky, Mode.rgb, Mode.cholesky_distance, Mode.log_grads, Mode.gecco_projection, Mode.splatting_loss, Mode.ctx_splat]
 
-# mode = [Mode.in_world_space, Mode.procrustes, Mode.splatting_loss, Mode.rgb, Mode.depth_projection, Mode.log_grads, Mode.rotational_distance, Mode.ctx_splat]
-
-# mode = [Mode.in_world_space, Mode.rgb, Mode.log_L, Mode.cholesky_distance, Mode.gecco_projection, Mode.splatting_loss, Mode.ctx_splat, Mode.log_grads] # , Mode.ctx_splat, Mode.splatting_loss
 print(f"Train with: {mode}")
 model_size = {
     'convnext_size' : "tiny", # tiny small
